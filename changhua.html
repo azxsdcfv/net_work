@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("miaoliImg").addEventListener("click",change1,false);
+                document.getElementById("taichungImg").addEventListener("click",change2,false);
+                document.getElementById("changhuaImg").addEventListener("click",change3,false);
+                document.getElementById("yunlinImg").addEventListener("click",change4,false);
+                document.getElementById("nantouImg").addEventListener("click",change5,false);
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="changhua1.jpg" alt="1" width="350px"><ul><li>地址: 彰化縣鹿港鎮埔頭街</li><li>由於昔日的鹿港是以貿易為主，港口附近由於地利之便，便形成船行與商家的重要據點。瑤林街、埔頭街、大有街因臨近河道，於是成為船行與碼頭的集中區。</li><li>鹿港繁盛時碼頭區的主幹─舊街，即今之埔頭、瑤林、大有三條街道，曲折的紅磚巷道兩旁林立著重新整修過的舊式店屋，其奧妙的內部格局和舊式外觀耐人尋味，在此可找到若干老鹿港的風貌。</li><li>走進瑤林、埔頭二街的紅磚道，便令人油然而生一股古樸之意，宛如進入時空隧道。閩南風味的古老宅第，門楣上的各式避邪古物，以及兩旁的門聯，都訴說著舊時父老們的生活步調及型態。近年來由於觀光采風盛行，一些屋主便經營起民俗藝品店，使遊客在望風懷遠之餘，亦增添不少駐足之處。街道特別彎曲，有時甚至成直角連串轉彎，所以會如此是先民智慧的展現與適應生活的艱辛，走在街上請仔細體會每一曲折所蘊含的歷史故事。經過長期歲月的沉澱，這裡氣氛由從前的熱鬧繁華轉為今日的淡泊悠閒。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="changhua2.jpg" alt="1" width="350px"><ul><li>地址: 彰化縣鹿港鎮中山路430號</li><li>鹿港昔時為天然良港，與大陸商貿頻繁。為求航海安全，眾善信集議於西元1591年間建立鹿港天后宮崇祀媽祖，作精神寄託之所。</li><li>本宮係臺灣唯一奉祀湄洲祖廟開基聖母神像的廟宇，湄洲媽祖不但神靈顯赫，香火鼎盛，更因廟宇年代久遠、規模宏偉而聞名遐邇。尤其建築結構富麗堂皇，古色古香，雕樑畫棟獨具匠心，彩繪及木石雕刻，皆精緻絕倫巧奪天工，堪為寶島工藝寶庫。</li><li>信徒遍佈於臺灣各角落，終年香客絡繹不絕，每逢農曆一月至三月間的進香旺季，更是人潮洶湧，水洩不通。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="changhua3.jpg" alt="1" width="350px"><ul><li>地址: 彰化縣鹿港鎮鹿工南四路30號</li><li>位於彰濱工業區，外表看起來有點像一艘船，還有一隻梅花鹿守護著呢！館內劃分為五大區：資訊知性區、工程內裝區、藝術創作區、生活玻璃區、親子體驗等主題區。</li><li>台灣玻璃館位於彰化縣鹿港鎮彰濱工業區裡，於2006年5月27日正式開幕，全館佔地上千坪，其意義上不僅使台灣本土藝術家有一發展平台，也是一個免費展覽的寬廣場地，增加了民眾在假日休閒時旅遊觀光的新選擇；台灣玻璃館以『四面亮麗、八方驚奇』為座右銘，結合了台灣生態、文化藝術之特色，讓人來到這裡能有一種耳目一新的感覺，打破民眾對於玻璃冰冷的印象。</li><li>在台灣玻璃館的左側，座落了一間與眾不同的寺廟「護聖宮」──經歷六年多、耗費上億元經費，才打造出全台唯一的「玻璃廟」。一般寺廟常用木材、木雕來裝飾，但這間玻璃廟除了主要建材，裡裡外外佈滿許多玻璃裝飾，像是門神、石柱裝飾、甚至連祭祀的媽祖也為玻璃製作。玻璃廟內設有各種LED燈，在夜晚中會不停變換顏色，讓廟宇不再嚴肅死板，在燈光映照下玻璃廟美得宛如藝術品，令人驚嘆。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="changhua4.jpg" alt="1" width="350px"><ul><li>地址: 彰化縣芳苑鄉漁港路</li><li>王功區是臺灣西部極具特色的漁村，自從「王功甦醒」全國文藝季舉辦後，更全力朝休閒漁村觀光產業發展，鄉內的人文、漁業養殖及濕地生態，都相當豐富。「王功漁火」，是昔日彰化縣八景之一。芳苑鄉面積有96.89平方公里，據史載，三百八十多年前，福建省移民渡海而來，從事農漁業，並與福建省通航貿易，早期名為「番仔挖」。日治時代改番挖區為沙山庄，因本鄉多屬沙丘而得名，設庄役場，民國34年（西元1945年）後轄臺中市，經地方協議定為芳苑鄉，目前有26村。</li><li>典型沿海漁村的王功地區，王功蚵全臺聞名，配合豐富的自然與人文景觀，如紅樹林、水鳥、潮間帶招潮蟹、彈塗魚等海岸風光，王功漁港、燈塔、望海寮、竹筏等富麗漁村景象，及蘆筍田、乳牛場、養殖池等地方產業，彰化縣政府也正進行王功港區的城鄉新風貌工程，使王功魅力四射，吸引許多觀光客前來采風。鄉內的漢寶溼地，是繼大肚溪河口後，中部地區聞名的水鳥勝地，環保團體計畫做生態園區的營造，並曾舉辦「漢寶野鳥節」活動，讓喜愛賞鳥的民眾趨之若鶩。芳苑鄉因農漁業特產豐富，王功美食也頗受老饕的喜愛，走趟芳苑漁鄉之旅，收穫將滿行囊。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="changhua5.jpg" alt="1" width="350px"><ul><li>地址: 彰化縣鹿港鎮中山路152號</li><li>辜氏家族為保存鹿港傳統文化，並本著「取之社會、用之社會」的理念，於民國62年捐出祖居土地、建築物、家具、器皿及收藏品，同時成立財團法人機構長期經營管理，為一具有地方特色的文物陳列館。</li><li>本館共分兩棟建築，包括一棟具有二百年歷史的傳統閩南式建築「古風樓」，以及一棟近百年的文藝復興時代後期巴洛克式建築「洋樓」。館內收藏品共計六千餘件，以前清中葉至民國初年的民俗器物為主，舉凡食、衣、住、行、育樂、宗教禮俗，及節日慶典等民俗文物皆有展示，不僅充分展。</li><li>閩南式建築古風樓-古風樓為十八世紀磚砌木造古厝，傳統型的閩南建築風貌，古趣盎然，流露庭院深深的氣韻，也是品味傳統閩南深宅大院的好所在。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #miaoliImg, #taichungImg, #changhuaImg, #yunlinImg, #nantouImg{
+                width: 300px; height: 200px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 彰化</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="changhua1.jpg" alt="miaoliImg" id="miaoliImg"><img src="changhua2.jpg" alt="taichungImg" id ="taichungImg"><img src="changhua3.jpg" alt="changhuaImg" id="changhuaImg"><img src="changhua4.jpg" alt="yunlinImg" id="yunlinImg"><img src="changhua5.jpg" alt="nantouImg" id="nantouImg"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">鹿港老街</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">鹿港天后宮</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">台灣玻璃館</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">王功漁港</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">民俗文物館</strong>
+    </body>
+</html>
