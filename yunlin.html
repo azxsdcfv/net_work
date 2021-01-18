@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("miaoliImg").addEventListener("click",change1,false);
+                document.getElementById("taichungImg").addEventListener("click",change2,false);
+                document.getElementById("changhuaImg").addEventListener("click",change3,false);
+                document.getElementById("yunlinImg").addEventListener("click",change4,false);
+                document.getElementById("nantouImg").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="yunlin1.jpg" alt="1" width="350px"><ul><li>地址: 雲林縣北港鎮中山路178號</li><li>北港朝天宮舊稱天妃廟或天后宮，為了紀念分靈自湄洲祖廟──朝天閣，才改名為朝天宮。創建於清康熙年間，西元1694年，因神蹟靈驗，已成為全國三百餘座媽祖廟的總廟，外觀輝煌。廟中供祀天上聖母、鎮殿媽、湄洲媽祖、觀世音菩薩等神像。廟內的樑架結構及木雕皆出自於名匠之手，如廟埕外石欄杆柱上四海龍王之石雕像，每尊姿態各異，氣勢雄健，還有以米字形做出斗拱結網構造而成的藻井，整座寺廟不論是小至窗花上的人物表情動作的刻畫，大到氣勢雄偉的盤騰龍柱，作工之精巧細緻，無異是結合了宗教與藝術精品的綜合體。</li><li>北港朝天宮終年香火鼎盛，每年最熱鬧的二次祭典分別是農曆正月15日的元宵節及3月23日媽祖誕辰，元宵節是以花燈比賽為主，媽祖誕辰期間，各地信徒及分靈廟宇陸續回北港進香，規模十分盛大，而繞境遊行，更是鑼鼓喧天，萬人空巷，為媽祖香期最高潮。讓整個北港鎮都籠罩在濃郁的宗教氣息中。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="yunlin2.jpg" alt="1" width="350px"><ul><li>地址: 斗六市往永光的台三線路上，位於斗六柴里橋的古坑綠色隧道，全長約兩公里，路兩旁種植著約五十年歷史的芒果樹，綠蔭如棚形成一綠色隧道。</li><li>隧道旁有沿路而行的台糖小火車，其鐵軌、車站、車廂都相當具有獨特性，因此古坑鄉公所有計畫將其景觀結合小火車，規劃為可供民眾結婚的場所及文化景觀公園，公園、隧道、鐵道三合一如此有特色的旅遊景點，您不妨前往一遊，或者可考慮做為你結婚典禮執行的場所，絕對會讓你在這悠閒美麗的綠色隧道裡得到不同於他人的特別婚禮呦。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="yunlin3.jpg" alt="1" width="350px"><ul><li>地址: 雲林縣褒忠鄉馬鳴村鎮安路31-1號</li><li>五年千歲公園為全台最大的寺廟主題公園，原本為天然沙丘與大小不一池塘組成的環境在民國六十年間由鎮安宮與政府合作整理改建為「中正公園」，這裡佔地約為一公頃，於民國六十三年正式啟用，園區設施規劃有與馬鳴山意義相符的「龍馬負圖」，周為配置如慈恩園，放生蓮池中有著觀音大士、善才良女，附設蓮花噴泉造景；另還有莫愁亭、臥龍亭、怡心亭、龍珠亭等亭樓，並有兒童樂園與活動中心等，這裡的設施皆特聘巧匠名師打造，而在中正公園啟用滿二十年後，鎮安宮更規劃了壯觀的五年千歲公園，園區內以奇岩異石為主體架構，有高山石林的庭園景觀，九龍巨船、景觀鵲橋、大小瀑布、蜿蜒石洞地道、三十六天罡、七十二地煞、六十太歲星君、十八羅漢懸崖等特色景觀，巧奪天工的雕塑與設施非常值得前來一遊。</li><li>園區設施：入口處、放生池、群仙洞、水車、天山瀑布、瞭望台、奇天瀑布、靈芝洞、鵲橋、萬年古樹、親親亭、水濂洞、歲君洞、羅漢崖、靜心橋、馬龍山、城堡、榕樹巷、望月亭、榕園、龍洞、斷崖亭、摩天大橋、蘇堤、摩天瀑布、白堤、花架、九龍船隧道、石亭、淨水樓閣。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="yunlin4.jpg" alt="1" width="350px"><ul><li>劍湖山世界一開始以「主題樂園」打穩進軍休閒產業的基底，打造全國最大的親子樂園、創下全台第一家開幕以來年年集客人次達百萬以上的民營遊樂區、第一家年年榮獲產官學界評鑑為特優等的遊樂區等紀錄！</li><li>其後成立劍湖山渡假大飯店為全台唯一動漫主題度假飯店、嘉義耐斯王子大飯店為彰雲嘉唯一五星級飯店及耐斯廣場購物中心！劍湖山世界綜合休閒、遊樂、文創、住宿、購物等複合式旅遊，適合休閒度假、會議及商務旅行，有陽光歡樂的地方就有劍湖山世界！</li><li>2012年劍湖山世界取得日本卡通「北海小英雄」專屬授權，打造亞洲首座「北海小英雄」主題樂園「小威の海盜村」再度創下台灣休閒產業的首例。「追求卓越，保持領先」這就是劍湖山世界從過去、現在、以及永無止境的未來，始終秉持的經營理念與目標。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="yunlin5.jpg" alt="1" width="350px"><ul><li>又稱會社鐵橋、虎溪鐵橋的虎尾鐵橋，是由大日本製糖株式會社所出資的，而由英國人所設計的。虎尾鐵路橋不只象微著台灣早年在困厄的環境中一路走來的鋼鐵時代，現今更成為了歷史性的紀念地標以及重要的休閒景點。當您來到虎尾時，不妨來到虎尾鐵橋走走看看，更可順道去附近的虎尾糖廠、同心公園，一同回味台灣的努力歷程以及成就。</li><li>虎尾鐵橋原是一座木造橋樑，係日本時期為了方便火車運輸甘蔗至虎尾糖廠，由大日本製糖株式會社出資，並且於1907年興建。除運輸甘蔗外，也曾經同時辦理客運業務。1931年於原木造橋下游側改建新橋，由3孔鋼構桁梁及7孔鈑梁連結而成，長約300.6公尺。國民政府時代1960年將虎尾鐵橋延長至437公尺。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #miaoliImg, #taichungImg, #changhuaImg, #yunlinImg, #nantouImg{
+                width: 300px; height: 200px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 雲林</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="yunlin1.jpg" alt="miaoliImg" id="miaoliImg"><img src="yunlin2.jpg" alt="taichungImg" id ="taichungImg"><img src="yunlin3.jpg" alt="changhuaImg" id="changhuaImg"><img src="yunlin4.jpg" alt="yunlinImg" id="yunlinImg"><img src="yunlin5.jpg" alt="nantouImg" id="nantouImg"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">北港天后宮</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">古坑綠色隧道</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">五年千歲公園</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">劍湖山樂園</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">虎尾鐵橋</strong>
+    </body>
+</html>

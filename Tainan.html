@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Anping").addEventListener("click",change1,false);
+                document.getElementById("Billion").addEventListener("click",change2,false);
+                document.getElementById("Chikan").addEventListener("click",change3,false);
+                document.getElementById("moon").addEventListener("click",change4,false);
+                document.getElementById("Qigu").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Anping.jfif" alt="1" width="350px"><ul><li>地址: 安平古堡 708台南市安平區國勝路82號</li><li>荷蘭人於西元1624年，在安平建造了臺灣第一座城堡「熱蘭遮城」，也就是現在的安平古堡，這裡曾是荷蘭人統治的中樞，更是對外貿易的總樞紐，原本的建築格局分為方形內城與長方形外城。西元1661年，鄭成功驅離荷蘭人後，將此地改名為安平，故熱蘭遮城也稱為「王城」或「臺灣城」，俗稱安平古堡，是臺灣最早的一座城池。</li><li>清康熙年間，正式將臺灣納入版圖，政治中心移至府城內，進而逐漸喪失其價值。後來曾破壞城壁紅磚挪為建造億載金城之用，到了日治時期，內城荷式建築全毀，四周以紅磚砌成方形階臺，臺上建造西式平房作為海關宿舍。而成為今日的紀念館風貌，二戰後改名為安平古堡，目前紀念館邊殘存七十多公尺長的外城南牆殘壁依然屹立，老榕攀爬，紅磚班駁，是300餘年來僅存的歷史遺跡，訴說著曾經過往的滄桑。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Billion.jfif" alt="1" width="350px"><ul><li>地址:億載里 708台南市安平區。</li><li>億載金城古稱為「安平大砲臺」或「二鯤鯓砲臺」是為了對抗因牡丹社事件而犯臺的日本軍隊。西元1874年沈葆楨先抵安平，認為應建立大砲臺以保衛府城，因此，西元1876年由法國工程師所設計完成的全臺第一座西式砲臺終於完成，也是全臺第一座配備英國阿姆斯壯大砲的砲臺，臺灣的海防軍事也因此而邁向近代化的一大步。建築形制上，億載金城屬於西洋稜堡式的方形砲臺，四角凸出，中央內凹。環繞砲臺並有護城壕，砲臺上分置大、小砲，城堡中央則為操練場；形制完善、規模宏大，加上砲臺威力強大，億載金城可說是臺灣南北砲臺中，劃時代的重要里程碑。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="Chikan.jfif" alt="1" width="350px"><ul><li>地址: 中西區 700台南市</li><li>赤崁樓從荷蘭時期便是行政中心，西元1661年鄭成功驅逐荷蘭人後，即改普羅民遮城為承天府治。清領初期台江尚未淤塞前，浪濤可直達赤崁樓下，「赤崁夕照」是當時著名的臺灣八景之一。赤崁樓前有九座清領時期石龜馱碑，是從他處遷移至此，傳說石龜為龍生九子之一，因好負重而變成龜狀。另外「斷足石馬」的雕像有一傳說是因石馬入夜後會化作妖怪騷擾百姓，所以才被斷足，成為現在的模樣。後來，赤崁樓因民變的破壞及疏於管理而日漸頹圮，而原本荷式建築的主體也加上了中式的建築，一度上面還祭祀了觀世音菩薩等神明。日治時期，赤崁樓改為陸軍衛戍醫院，也陸續展開修建及整修，二戰後，將木製結構改建為鋼筋混凝土結構，並將主要入口改向，而成為今日赤崁樓的模樣。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="moon.jfif" alt="1" width="350px"><ul><li>地址:草山月世界大峽谷 713台南市左鎮區草山里 </li><li>臺南市左鎮區的草山月世界，是由砂岩與頁岩所構成的青灰岩地形，與高雄市內門、田寮、燕巢區的泥岩惡地連成一片，稱為白堊土地形。由於白堊土含高鹼性，使得草木難生，乾燥時硬似石塊，遇雨時鬆軟成泥，經雨水沖刷溪田切割，造成半面山深谷曲流和斷崖的特殊地形，在這種惡地上，除非生命力最強的草木，否則難以生長，因此在此地放眼上千公傾，所見的竹子是刺竹雜草，其餘盡是光禿一片，成為最典型的月世界地形殊。</li><li>由岡林村往草山月世界的路上，沿途所見盡是稜角分明的特殊地形，以及青翠的剌竹景觀；隨著四季與晨昏的變化，草山月世界也展現出不同的風貌：氣候清朗的黎明，站在海拔308公尺的至高點上，可欣賞日出和多層次的雲霧變化，冬季時，剌竹漸漸轉為枯黃，翌年春天又變為紅色，每年3~4月，便是觀賞剌竹變色的最佳時機</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="Qigu.jfif" alt="1" width="350px"><ul><li>地址: 七股鹽田旅遊服務中心 台南市七股區號</li><li>七股鹽場過去是臺灣最大的曬鹽場，主要供應國內農工業用鹽，隨時代變遷，曬鹽不符經濟效益，七股鹽場遂於民國91年（西元2002年）5月廢曬，結束臺灣338年曬鹽歷史，七股鹽山的休閒遊憩時代隨之開啟。</li><li>七股鹽山占地面積廣達一公頃，約六層樓高的皚皚鹽峰聳立於七股，蔚為奇觀。臺鹽公司融合傳統與創新，揉捻鹽業史、文化創意、產業與健康理念，在園區內多元展現鹽業發展：鹽山主峰、鹽如玉展示館、曬鹽體驗區、鹽屋、骨董機械展示區、遊園小火車等獨樹一幟的鹽主題觀光園區，寓教於樂，成為國內、外人士最常指定的知名觀光據點。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Anping, #Billion, #Chikan, #moon, #Qigu{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 台南</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodS.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Anping.jfif" alt="Anping" id="Anping"><img src="Billion.jfif" alt="Billion" id ="Billion"><img src="Chikan.jfif" alt="Chikan" id="Chikan"><img src="moon.jfif" alt="moon" id="moon"><img src="Qigu.jfif" alt="Qigu" id="Qigu"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">安平古堡</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">億載金城</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">赤嵌樓</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">草山月世界</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">七股鹽山</strong>
+    </body>
+</html>

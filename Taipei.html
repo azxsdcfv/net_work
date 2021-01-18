@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Shilin").addEventListener("click",change1,false);
+                document.getElementById("Yangmingshan").addEventListener("click",change2,false);
+                document.getElementById("gugong").addEventListener("click",change3,false);
+                document.getElementById("Longshan").addEventListener("click",change4,false);
+                document.getElementById("Raohe").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Shilin.jfif" alt="1" width="350px"><ul><li>地址: 111台北市士林區大東路13-1</li><li>士林夜市為臺北市最具規模的夜市之一，以陽明戲院及慈誠宮為中心，包含了文林路、大東路、大南路等熱鬧街市集結而成，其中士林市場早在西元1910年即已興建，以各種傳統小吃聞名國內外，許多觀光客皆慕名而來，像是大餅包小餅、石頭火鍋或是士林大香腸等，更是已經成為美食地標，無人不曉。</li><li>由於夜市鄰近許多學區，故以學生為主要的消費族群，價格也比一般商店便宜許多，例如家具、衣飾、相片沖印店或寵物用品等，都有其集散的區域，『情人巷』中的精品店與冰店，更是吸引了不少當地學子以外的顧客前往。。</li><li>士林夜市所含範圍極廣，在曲折巷弄內行走，常有柳暗花明又一村的驚喜，週末假日時前往，更是人山人海，擠得水洩不通，常見一家大小提著大包小包剛採買的日用品，嘴裡還塞著美味小吃，滿足之情溢於言表。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Yangmingshan.jfif" alt="1" width="350px"><ul><li>地址:陽明山國家公園管理處 112台北市北投區竹子湖路1-20號。</li><li>陽明山國家公園緊臨臺北都會區，全區以大屯火山群彙為主，面積約11,338公頃，由內政部營建署陽明山國家公園管理處管理，因火山活動造成的錐狀與鐘狀火山體、火口湖、硫氣孔、地熱與溫泉，具有研究及娛樂價值，受季風影響，植物相兼具高草原、矮草原、闊葉樹林、亞熱帶雨林與水生植物群落，孕育臺灣水韭、大屯杜鵑、蝴蝶與鳥類，陽明山公園栽植的櫻花及杜鵑，使本區成為臺北近郊最吸引人的賞花場所。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="gugong.jfif" alt="1" width="350px"><ul><li>地址: 國立故宮博物院 111台北市士林區至善路二段221號</li><li>故宮收藏的文物珍寶，是舉世聞名的文化資產，從帝王收藏到全民共有，傳承有序的國立故宮博物院典藏，其收藏品的年代幾乎囊括了整個中華文化五千餘年未曾中斷的歷史，在世界文明史上獨一無二。博物院內60多萬件收藏品中，大多數是昔日中國皇室的收集品，皇室的收藏則始自1000多年前的宋朝。</li><li>隨著數位科技廣泛應用在博物館的展覽或硬體設備，歷時三年的正館改建工程，於民國96年（西元2007年）2月改建完工後的新故宮，除了提供煥然一新的展覽手法之外，也增建了數位學習空間，如數位導覽大廳、多媒體放映室、多媒體兒童學習區等，同時持續推動「數位典藏」、「數位博物館」以及「數位學習」等計畫，營造一個無圍牆的博物館。而多樣化的餐飲服務、電影院以及文化商店等等，讓遊客不僅可以參觀古文物、欣賞新藝術，甚至為約會地點，視故宮為生活的一部份。</li><li>承先啟後，再造新局，改建完工的故宮不僅代表華夏歷史的傳承，展望未來更是與當代社會文化脈絡連結的新起點。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="Longshan.jfif" alt="1" width="350px"><ul><li>地址: 富民里 108台北市萬華區</li><li>艋舺（今萬華）是臺北市開發最早的地方，而臺北第一名剎─龍山寺，就是當地居民信仰、活動、集會和指揮的中心。據說以前有一個人把佩帶的觀音菩薩香火，遺掛在一棵大榕樹上，到了夜晚竟然發出光芒。更奇怪的是有求必應，非常靈驗。所以信徒就在那個地方建立龍山寺，從西元1738年開始，到1740年落成。二百多年來，龍山寺經過多次的修建，整個結構是完整「回」字形，在傳統的寺廟建築中，是一種非常尊貴的佈局。在廣場上，可注意地板石材，其中切割較不整齊的部分，已有古老的歷史。</li><li>前臺灣海峽又叫「黑水溝」，風浪很大，移民都用石板來壓穩船艙，以能安全渡海來臺，而這些石板，後來也就用來舖設龍山寺前的部分廣場。再來，就可從前殿開始欣賞。首先，可以看到殿前有1918年所製臺灣獨一無二的銅鑄龍柱，屋簷下的木雕、彩繪，也都非常生動。尤其用來支撐屋頂的「網目斗拱」，是臺灣寺廟的首次創作。另外，大門左邊的石雕窗上，雕有精彩的三國演義故事；右面則有一個八角竹節窗，上刻竹幹，是「竹報平安」的意思。由於正門只有節慶祭典時才打開，所以平時都從廟宇左邊的門進入，右邊的門出來。進到廟裡，可看到很多善男信女虔誠祭拜、誦經唸文。出了前殿，在天井上有一個香爐，香爐上「憨番抬廟角」的有趣雕塑。天井兩旁還有鐘樓和鼓樓，早上敲鐘、晚上擊鼓，來作為誦經、法會的提醒。</li><li>從石階上正殿，正殿四面有一道走廊，廊上的壁面、石柱都有精巧的石雕作品，值得仔細觀賞。進了正殿，可以看到主神──觀世音菩薩。在第二次世界大戰中，龍山寺正殿曾被炮火擊中，殿堂全毀，但此神像卻絲毫無損，所以讓信徒更加敬拜。來到後殿和左、右翼殿，會看到很多的神佛，有人說「龍山寺是眾神的聚會所」，就是說廟內供奉神佛非常多，號稱主、附神的有一百多尊，這裡可注意後殿殿前的一對人物石柱，造形生動，和一般寺廟以「龍」為題材的石柱不同。此外，左、右殿入口外側的壁面，有「紅毛番吹法螺」的石雕，也和香爐上「憨番抬廟角」有相同的趣味性。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="Raohe.jfif" alt="1" width="350px"><ul><li>地址: 105台北市松山區饒河街194-226</li><li>饒河街夜市位於松山區八德路四段及撫遠街間的饒河街，全長600公尺，是臺北市區的大型觀光夜市之一。饒河街與松山車站一帶舊稱錫口，因基隆河水深，使本區得舟楫之便，而成為基隆、宜蘭貨物運至臺北城之轉運站，當時商賈雲集、舟船輻輳，極一時之盛，故使本區有「小蘇州」之稱。後因港岸河水淤積，停泊船隻漸少，再加上八德路拓寬後，饒河街成為次要道路，商業活動大減。政府為了改善當地商家生計，遂於民國76年（西元1987年）將南松山橋下有照攤販集中至饒河街，規劃為五百公尺長，為臺北市第二條觀光夜市。攤位整齊，內容琳琅滿目，蚵仔麵線、牛雜麵、冰品攤等應有盡有。除了小吃外，各種日用百貨如服飾、皮鞋亦物美價廉，此外還有民俗技藝表演及土產展售等。</li><li>饒河街夜市全長約六百公尺，位於撫遠街與松山火車站前的入口處，各設有一座燈火璀璨的牌樓，由牌樓處開始進入夜市區。饒河街夜市之一大特色，以定期舉辦傳統技藝表演而聞名。兩側商店及騎樓下的攤販不計其數，因此來到此地的人，無論採買服飾、生活用品或吃喝玩樂，絕對能盡其所欲。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Shilin, #Yangmingshan, #gugong, #Longshan, #Raohe{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 台北</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Shilin.jfif" alt="Shilin" id="Shilin"><img src="Yangmingshan.jfif" alt="Yangmingshan" id ="Yangmingshan"><img src="gugong.jfif" alt="gugong" id="gugong"><img src="Longshan.jfif" alt="Longshan" id="Longshan"><img src="Raohe.jfif" alt="Raohe" id="Raohe"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">士林夜市</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">陽明山國家公園</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">故宮博物院</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">龍山寺</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">饒河夜市</strong>
+    </body>
+</html>
