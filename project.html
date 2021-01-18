@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html>
+<head>
+    <style>
+        body { background-color: rgb(235, 241, 221);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+        }
+        h1 {
+            text-align: center;
+            color: rgb(218, 73, 73);
+        }
+        input { background-color: khaki;
+            color: darkslateblue;
+            border-radius: 10px;
+            width: 75px; height: 45px;
+            font-weight: 1000;
+            font-size: 170%;
+        }
+        input:hover{ width: 100px; height: 60px; font-size: 230%;}
+        #north { position: absolute; left: 780px; top: 100px;
+        }
+        #middle { position: absolute; left: 610px; top: 340px;
+        }
+        #south {position: absolute; left: 740px; top: 630px}
+        #east {position: absolute; left: 880px; top: 450px}
+        #money {position: absolute; left: 1250px; top: 35px;}
+        #energy {position: absolute; left: 1000px; top: 32px;}
+    </style>
+    <script>
+        function start(){
+                document.getElementById("north").addEventListener("click",show,false);
+                document.getElementById("middle").addEventListener("click",show,false);
+                document.getElementById("east").addEventListener("click",show,false);
+                document.getElementById("south").addEventListener("click",show,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+
+<body background="taiwan.jpg">
+    <h1>選擇想去的地區</h1>
+    <input type="button" name="" id="north" value="北部"
+    onclick="javascript:location.href='North_2.html'">
+    <input type="button" name="" id="middle" value="中部" 
+    onclick="javascript:location.href='middle.html'">
+    <input type="button" name="" id="south" value="南部"
+    onclick="javascript:location.href='south_2.html'">
+    <input type="button" name="" id="east" value="東部"
+    onclick="javascript:location.href='east.html'">
+    <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+    <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+</body>
+</html>

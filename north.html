@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $('#Taipei').hover( function(){
+                    $('#middleImg').attr({src: 'Taipei.png'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N.gif'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#NewTaipei').hover( function(){
+                    $('#middleImg').attr({src: 'NewTaipei.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N.gif'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#Keelung').hover( function(){
+                    $('#middleImg').attr({src: 'Keelung.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N.gif'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#Taoyuan').hover( function(){
+                    $('#middleImg').attr({src: 'Taoyuan.png'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N.gif'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#hsinchu').hover( function(){
+                    $('#middleImg').attr({src: 'hsinchu.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N.gif'});
+                });//滑鼠移出後要出現的照片位置網址
+            });
+            function start(){
+                document.getElementById("game").addEventListener("click",openGame,false);
+            }
+            function openGame(){
+                x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?");
+                m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: absolute; left: 530px; top: 60px;
+            }
+            #city {
+                position: absolute; top: 450px;
+                float: left;
+            }
+            
+            #Taipei, #NewTaipei, #Keelung, #Taoyuan, #hsinchu{
+                width: 300px; height: 150px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 45px;}
+            #energy {position: absolute; left: 1000px; top: 43px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 台灣北部</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="game" value="小遊戲" >
+        <div style="text-align: center;"><img src="N.gif" alt="N_Img" id="middleImg"></div>
+        <div id="city"><img src="Taipei.png" alt="Taipei" id="Taipei" onclick="javascript:location.href='Taipei.html'"><img src="NewTaipei.png" alt="NewTaipei" id ="NewTaipei" onclick="javascript:location.href='NewTaipei.html'"><img src="Keelung.png" alt="Keelung" id="Keelung" onclick="javascript:location.href='Keelung.html'"><img src="Taoyuan.png" alt="Taoyuan" id="Taoyuan" onclick="javascript:location.href='Taoyuan.html'"><img src="hsinchu.png" alt="hsinchu" id="hsinchu" onclick="javascript:location.href='hsinchu.html'"></div>
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 500px; left: 500px; font-size: 120%;">台北</strong>
+        <strong style="position: absolute; top: 490px; left: 720px; font-size: 120%;">新北</strong>
+        <strong style="position: absolute; top: 500px; left: 900px; font-size: 120%;">基隆</strong>
+        <strong style="position: absolute; top: 500px; left: 1300px; font-size: 120%;">桃園</strong>
+        <strong style="position: absolute; top: 500px; left: 1300px; font-size: 120%;">新竹</strong>
+    </body>
+</html>

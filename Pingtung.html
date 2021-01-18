@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Kenting").addEventListener("click",change1,false);
+                document.getElementById("Xiaoliuqiu").addEventListener("click",change2,false);
+                document.getElementById("Sichongxi").addEventListener("click",change3,false);
+                document.getElementById("Shuangliu").addEventListener("click",change4,false);
+                document.getElementById("Shimen").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Kenting.jfif" alt="1" width="350px"><ul><li>地址: 墾丁國家公園 屏東縣</li><li>「墾丁」名稱的由來是西元1877年，清廷招撫局自廣東潮州一帶募集大批壯丁到此墾荒，為紀念這些篳路藍縷、以啟山林的開「墾」壯「丁」，而將此地名為「墾丁」。墾丁國家公園位於臺灣南端恆春半島之南側，三面環海，是國內少數涵蓋陸地與海域的國家公園之一，也是臺灣本島唯一的熱帶區域。特殊的地形、豐饒的動植物及獨特的民情風俗，不僅是保育、研究、環境教育的自然博物館，更是國民休閒旅遊的怡情勝地。公園內精緻而多變的美景，如南仁湖、龍鑾潭、大尖石山、及船帆石，使墾丁成為國內第一座公告成立的國家公園。</li><li>墾丁既有豐富的自然資源、氣候溫暖、景致宜人且交通便利，每年都吸引約四百萬遊客到此感受自然體驗，資源珍貴豐美。由於為熱帶性氣候，植物種類繁多，而且有許多具代表性，並需妥善照料的植物區。在如此豐富的植物環境中孕育了墾丁多樣化的野生動物，如梅花鹿、臺灣獼猴、灰面鷲等，為墾丁的美景更添生氣。到此觀星、聽濤，善用園區步道系統、遊客中心，擁有一趟知性、感性兼具的墾丁國家公園之旅。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Xiaoliuqiu.jfif" alt="1" width="350px"><ul><li>地址:頂上福 929屏東縣琉球鄉。</li><li>位於屏東縣東港西南方的小琉球，是臺灣離島中唯一的珊瑚礁島，島上有名的天然奇景－「花瓶石」是觀光客必遊及攝影留念的地方，「落日亭」為全臺最佳欣賞落日景點之一，啟人遐思之古蹟「美人洞」，以及島上最具盛名的觀光勝地「烏鬼洞」景觀奇特，讓人嘆為觀止。此外有小琉球威尼斯沙灘美名的「蛤板灣」，還有可戲水、浮潛的中澳沙灘等等，大自然鬼斧神工創造了島上奇岩，讓遊客驚喜之餘，亦飽嚐一場天然藝術饗宴。小琉球的美，值得仔細品味！</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="Sichongxi.jfif" alt="1" width="350px"><ul><li>地址: 四重溪 944屏東縣車城鄉</li><li>四重溪位於屏東縣恆春半島車城鄉東北方，從車城往東走199縣道約在32公里處，即到達四重溪，四重溪溫泉於清光緒年間即被發現，屬沈積岩分布區，因有天然溫泉自地下湧出，故古稱「出湯」，又因此處環山盆地，河川貫穿其間，早期居民出入均由河川涉水，步行四層彎島河川，又俗稱「四重溪」。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="Shuangliu.jfif" alt="1" width="350px"><ul><li>地址:雙流國家森林遊樂區 943屏東縣獅子鄉丹路2巷23號 </li><li>雙流國家森林遊樂區位於南迴公路旁，屬獅子鄉，以溪流的景觀為最大特色。本區居楓港溪上游兩大源流交會處，終年流水潺潺；雙流瀑布高廿餘公尺，溪水直洩而下，聲勢浩大，激起迷濛的水霧，是最有名的景觀。溪谷兩旁青山環繞，林木茂密，處處可見熱帶雨林植物，栽植樹種為光臘樹、楓香、桃花心木等，二十多年來撫育長成林相優美蒼翠碧綠的森林，在積極提倡森林浴活動的今天，具有青山常在、綠山常流之特色。走在森林浴步道中，樹蔭點點，涼亭石椅可乘涼歇息，為提供森林浴場的最佳場所。</li><li>由入口區沿溪流至瀑布區步道，沿途景觀優美，可從事多項遊憩活動。沿途有休憩座椅、避雨亭（休息亭）、垃圾筒等設施。帽子山為本區最高處，海拔約650公尺，四周視野遼闊，可環視群山並遠眺太平洋及臺灣海峽。雙流瀑布距入口處3,650公尺，瀑布為楓港溪上游兩大源流的交匯點，也是本森林遊樂區命名的由來。從入口處出發，沿途可以涉溪、戲水、賞蝶、還能觀賞人工造林的成果，和至今保有的天然林景觀。雙流瀑布形如扇面，白水直瀉而下，山岩峭壁在蒼綠樹林陪襯下氣勢壯觀，景色極為引人</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="Shimen.jfif" alt="1" width="350px"><ul><li>地址: 石門古戰場 944屏東縣車城鄉</li><li>地勢險要夾峙於斷崖與山壁之間，為一有名的古戰場，即清同治年間牡丹社事件地點，當時山胞於此力戰侵台日軍，清廷卻以賠款通商了事，留下令人扼腕的史蹟，虱母山頂上立有「澄清海宇還我河山」石碑供人憑弔。</li><li></li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Kenting, #Xiaoliuqiu, #Sichongxi, #Shuangliu, #Shimen{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 屏東</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodS.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Kenting.jfif" alt="Kenting" id="Kenting"><img src="Xiaoliuqiu.jfif" alt="Xiaoliuqiu" id ="Xiaoliuqiu"><img src="Sichongxi.jfif" alt="Sichongxi" id="Sichongxi"><img src="Shuangliu.jfif" alt="Shuangliu" id="Shuangliu"><img src="Shimen.jfif" alt="Shimen" id="Shimen"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">墾丁國家公園</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">小琉球</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">四重溪溫泉</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">雙流國家森林遊樂區</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">石門古戰場</strong>
+    </body>
+</html>

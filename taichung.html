@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("miaoliImg").addEventListener("click",change1,false);
+                document.getElementById("taichungImg").addEventListener("click",change2,false);
+                document.getElementById("changhuaImg").addEventListener("click",change3,false);
+                document.getElementById("yunlinImg").addEventListener("click",change4,false);
+                document.getElementById("nantouImg").addEventListener("click",change5,false);
+
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="taichung1.jpg" alt="1" width="350px"><ul><li>中央公園中央公園面積約67.34公頃因應結合水湳經貿園區，擁有臺中之肺的盛名，是一個超大的活動公園，園區結合「智慧」、「低碳」與「創新」三大原則，有獨步全球的十二感官互動設施結合於園區之中進行運用，使得園區與一般性的公園有著極大不同的差異性。廣大的園區面積更利用許多綠色植栽呈現不同風貌的地景，</li><li>園內有106種喬木，數量達11,938棵以上，其中原生樹種占83%，呈現俱多樣化且適合生物棲息地的都市綠洲，早晨可在高低起伏的地形之間跑步運動；午後可在陽光細撒的林蔭之間漫步；黃昏時可以登上公園的制高點的自我體驗區欣賞晚霞的日落；夜晚更可以在點點燈光中探尋神秘的森林生態，歡迎您的造訪。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="taichung2.jpg" alt="1" width="350px"><ul><li>又稱秋紅谷廣場、秋紅谷景觀生態公園，通常直稱秋紅谷，是位於臺灣臺中市西屯區七期重劃區內的大型滯洪池公園，外鄰臺灣大道、朝富路、市政北七路和河南路，佔地30,000平方公尺。</li><li>歷史: 此區原為教師新村的一部份，1980年2月被劃入臺中市第七期市地重劃區範圍內重劃。</li><li>亞洲首創、全台唯一的下凹綠地公園，還曾獲建築界奧斯卡獎呢。大家最好奇的秋紅谷美食餐廳、秋紅谷停車場＆公車都整理好了，公園內有湖泊、紅葉、景觀橋很適合悠閒散步；搭配秋紅谷附近景點台中國家歌劇院、東海大學、逢甲夜市等一起玩超充實，周末就出發七期豪宅中的綠洲踏青吧！</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="taichung3.jpg" alt="1" width="350px"><ul><li>地址: 臺中市西屯區惠來路二段 101 號</li><li>歌劇院除了提供大中小劇場的舞台給國內外表演藝術團隊進行經典演出或創新製作，更將以數位／視覺／音景藝術的常設展或主題展跟臺灣中部地區的科技產業連結，讓歌劇院存在於市民的日常之中。「存在於日常之中」的還有各種形式與主題的藝術活動：親子互動劇場體驗，從手作中認識劇場；大孩子可以參加劇場解密導覽，從舞台機關、燈光透視概念認識劇場；更有劇場建築空間、綠劇人植栽導覽。在年節假日，歌劇院會準備「全家出動」的藝術體驗實作：耶誕花圈、薑餅屋、紙膠帶、立體書等等；寒暑假給孩子們「玩．play．劇場」，從開發肢體，以說故事練習表達自我，並在小劇場以製作演出結業；我們也特別為中小學教師規劃科技與數位藝術的教材製作；對於追求心靈充實的人，歌劇院更有不定期的讀劇、導賞、導聆等講座，讓愛樂／追劇／慕舞的人都有心嚮往之的課程。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="taichung4.jpg" alt="1" width="350px"><ul><li>地址: 臺中市霧峰區(光復新站)和平路2-3號 </li><li>光復新村位於霧峰區坑口里，其歷史可追溯到1950年代初期，退守台灣的中華民國政府，為了防止戰爭時一次就將政府機關摧毀，因此推動「疏遷計畫」，把台灣省政府遷到臺灣中部。1956年於霧峰建立的光復新村成為二戰後台灣第一個新市鎮，次年於南投市建立中興新村。</li><li>位於霧峰區的光復新村，是早期台灣第一個新市鎮，濃厚的眷村味，是拍攝婚紗取景的好去處，也有不少電影也在此取景。光復新村－村落地圖光復新村－店家導覽圖昔日，光復新村為省政府教育廳、衛生處、印刷廠員工的眷屬宿舍。資金為美援提供，並由當時的建設廳副廳長劉永楙到英國考察，帶回最新的「花園城市」設計概念，將工作、居住區合一，設計低人口密度、高比率綠地的生活空間。光復新村入口意象住戶最多時達四百多戶，內部公共設施完善，有學校、公園、市場等，環境清雅，街道整齊。村內具有台灣第一座雨水、污水分流的下水道系統，在台灣的都市建築史上有其特殊的意義。光復新村－舊眷村建築九二一大地震後三年，居民再度意識到閒置宿舍再公共化的價值，希望以社區生活博物館，引入藝術家的文化創意，讓光復新村脫離「省府宿舍」的宿命，轉化成與地震博物館相互輝映。光復新村－惜物交換區然而，精省後的「光復新村」分屬中央各部主管，計有財政部、衛生署、教育部，使得管理與再利用均不易推動，同時，在法令限制下，社區居民也無法對自己的居住環境做出變更，生活環境因此更加惡化。光復新村－店家擺設​如今，光復新村經過社區活化再利用，再度給予當初的光復新村新的生命，並經由70位充滿理想的店主組成的小聚落青年夢想地，搖身一變成了文創藝術的眷村，可以在街道巷弄找到各種不同的裝置藝術，文創小店，讓光復新村再次帶著大家探索光陰足跡。光復新村－青創基地光復新村－文創小店。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="taichung5.jpg" alt="1" width="350px"><ul><li>地址: 臺中市西區民生路368巷</li><li>鄰近馬路卻獨出一格的審計新村，便是在這片將近半世紀歷史的老宿舍，審計新村是臺中市第三批臺灣省政府宿舍群之一</li><li>活絡閒置公有建物，提供產業發展需求之空間，並帶動地方整體發展，臺中市政府以委託經營方式合作開發，另公開招商募集民間、法人團體投資開發。本基地以引入複合式主題文化創意產業為主，本區之區位之交通優勢，及臨近臺中相關之藝術、人文及新興商業活動區都在步行可達之範圍，可串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #miaoliImg, #taichungImg, #changhuaImg, #yunlinImg, #nantouImg{
+                width: 300px; height: 200px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 台中</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="taichung1.jpg" alt="miaoliImg" id="miaoliImg"><img src="taichung2.jpg" alt="taichungImg" id ="taichungImg"><img src="taichung3.jpg" alt="changhuaImg" id="changhuaImg"><img src="taichung4.jpg" alt="yunlinImg" id="yunlinImg"><img src="taichung5.jpg" alt="nantouImg" id="nantouImg"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">水湳中央公園</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">秋紅谷廣場</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">台中歌劇院</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">光復新村</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">審計新村</strong>
+    </body>
+</html>

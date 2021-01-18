@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Yehliu").addEventListener("click",change1,false);
+                document.getElementById("very").addEventListener("click",change2,false);
+                document.getElementById("redhair").addEventListener("click",change3,false);
+                document.getElementById("Northeast").addEventListener("click",change4,false);
+                document.getElementById("Pingxi").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Yehliu.jfif" alt="1" width="350px"><ul><li>地址: 野柳 207新北市萬里區</li><li>「野柳」為大屯山餘脈伸出海中的岬角，從金山遠眺，猶如潛入海中的巨龜，故又名為「野柳龜」。其因波浪侵蝕、岩石風化及地殼運動等作用，造就了海蝕洞溝、燭狀石、蕈狀岩、豆腐岩、蜂窩岩、壺穴、溶蝕盤等各種奇特景觀。女王頭、仙女鞋、燭臺石等，更是聞名國際的海蝕奇觀。區內的林添禎塑像是紀念其當年捨身救人的英勇事蹟。</li><li>燭臺石的「燭火」其實是岩層裡堅硬的球形結核，因較能抵抗海蝕，而露出錐形頂部，海水沿其邊緣迴流激盪，產生環狀溝槽，由於結核外圍有一帶堅硬的環圈，海水便順此環圈向下侵蝕、切割，形成圓錐狀外形，真可謂鬼斧神工之佳作。所以「野柳」不但是臺灣著名的觀光遊憩據點，更是一處地質地形景觀豐富的教室，值得我們細究觀賞，相信在您觀賞之後，不得不讚嘆大自然之偉大神奇了。。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="very.jfif" alt="1" width="350px"><ul><li>地址:南山里 226新北市平溪區。</li><li>十分風景特定區位於臺灣東北部石碇、瑞芳與雙溪之間的十分寮周邊，行政地區上屬於新北市平溪區，實際地理位置是在基隆河的支流上，在臺灣風景區中是屬於瀑布溪谷型。基隆河是北部地區最大也是最長的一條河流，由於源頭的侵蝕作用與附近切割地形的關係，造成許多的斷層與奇岩，而河水經過這些斷層和奇岩後，因速度快而造成許多瀑布奇觀。北自猴硐至三貂嶺，再延伸到十分寮、平溪一帶，形成一連串此起彼落的瀑布群，其中較大且著名的是十分瀑布，在假日總是人潮洶湧、絡繹於途。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="redhair.jfif" alt="1" width="350px"><ul><li>地址: 文化里 251新北市淡水區</li><li>有三百多年歷史的紅毛城可說是淡水最耀眼的古蹟建築。1629年西班牙人侵略淡水，為鞏固其在北臺灣的殖民事業，遂在此建「聖多明哥城」為基地；1642年，荷蘭人驅逐了西人，在舊址重建該城，當時稱荷蘭人為「紅毛」，因此「紅毛城」之名也沿用至今。1867年為英國所租借，乃大肆整修，並在東側建「英國領事館」，做為官邸。領事館的紅色拱廊、綠瓶欄杆，與紅毛城相互輝映，增色不少。</li><li>紅毛城一直到民國69年（西元1980年），才由我國收回接管。由此俯視淡水河，形勢險要，「戌台夕照」素為淡水八景之一，集古蹟與勝景於一處。遊罷紅毛城，若時間充裕不妨到對面咖啡館或庭園餐廳小坐片刻。此區位在河堤公園上方，坐在小館中，悠閒的啜飲一杯咖啡，或品嚐海鮮，欣賞眼前淡水河口、觀音山景的自然風光，真是一大享受!</ul>';
+                    money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="Northeast.jfif" alt="1" width="350px"><ul><li>地址:東北角暨宜蘭海岸國家風景區福隆遊客中心 228新北市貢寮區興隆街36號</li><li>東北角依山傍海，灣岬羅列，有嶙峋的奇岩聳崖、巨觀的海蝕地形、細柔的金色沙灘，以及繽紛的海洋生態，並且孕育出淳樸的人文史蹟，是一處兼具大自然教室知性功能與濱海遊樂場感性風采的全方位觀光旅遊勝地。</li><li>東北角暨宜蘭海岸風景特定區位於臺灣東北隅，陸域北起新北市瑞芳區南雅里，南至蘇澳鎮內埤海灘南方岬角，海岸線全長102.5公里，海、陸域總面積共17,421公頃。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="Pingxi.jfif" alt="1" width="350px"><ul><li>地址: 平溪里 226新北市平溪區</li><li>位於新北市之東北區，地處於基隆河之上游，全鄉皆為山，是有名的山城，以五分山、平溪三尖及孝子山群最為有名，高度不高，在五、六百公尺間。由於基隆河上游貫穿全鄉，在其侵蝕作用與附近切割地形的關係，造成許多的斷層與奇岩，當河水經過而形成許多大小瀑布群，如十分瀑布、嶺腳石窟瀑布、眼鏡洞等瀑布群及壺穴景觀，都是北臺灣難得一見的自然奇觀。且其境內山勢由於地球造山運動的推擠，而成為東西面平緩，另一面陡峭的「單面山」。</li><li>「煤」曾是平溪區的特產，在其鼎盛時期，為全鄉賴以為生之依靠，近來雖已沒落停採，但「礦坑、老街、古宅」已成本地特色。如「十分老街」因位於廣闊的河階臺地，有平溪支線鐵路經過，故民宅皆緊鄰鐵道兩側而建。在老街外有座連接十分與南南山兩村的「靜安吊橋」，是目前少見保存良好的人行吊橋。而「石底街」上的房子更都是用由日本運來的杉木所建。另在「平溪老街」上仍保有部分依立著基隆河畔的傳統式長條街屋，狹窄擁擠的街道處處呈現著淳樸的山城風情。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Yehliu, #very, #redhair, #Northeast, #Pingxi{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 新北</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Yehliu.jfif" alt="Yehliu" id="Yehliu"><img src="very.jfif" alt="very" id ="very"><img src="redhair.jfif" alt="redhair" id="redhair"><img src="Northeast.jfif" alt="Northeast" id="Northeast"><img src="Pingxi.jfif" alt="Pingxi" id="Pingxi"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">野柳</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">十分風景特區</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">紅毛城</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">東北角</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">平溪</strong>
+    </body>
+</html>

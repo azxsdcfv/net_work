@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>網程專題</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body {  background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+        }
+        table {
+            border-collapse: collapse;
+        }
+
+        caption, td {
+            font-weight: bold;
+            font-family: helvetica, arial, sans-serif;
+        }
+
+        caption {
+            font-size: 3em;
+            color: gray;
+        }
+
+        td {
+            font-size: 4em;
+            color: blue;
+            border: 2px solid gray;
+            padding: 5px;
+        }
+
+        div {
+            font-size: 2em;
+            color: red;
+        }
+
+        #b1 {
+            font-size: 200%;
+            width: 200px;
+            height: 150px;
+            position:absolute;
+            left:370px;
+            top:270px;
+        }
+
+        #b2 {
+            font-size: 200%;
+            width: 200px;
+            height: 150px;
+            position:absolute;
+            left:970px;
+            top:270px;
+        }
+
+        button {
+            background-color: khaki;
+            color: darkslateblue;
+            border-radius: 10px;
+        }
+        #ppt{
+            background-color: khaki;
+            color: darkslateblue;
+            border-radius: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var r_D;
+        function judge_Description(){
+            r_D = localStorage.getItem("key");
+            if(r_D=="1"){
+                localStorage.setItem("key",0);
+                window.alert("祝您旅途愉快!");
+                location.href="project.html";
+            }
+            else{
+                window.alert("請先看說明!");
+            }
+            
+        }
+        function read_Description(){
+            r_D=1;
+            localStorage.setItem("key",1);
+        }
+        function start(){
+            localStorage.setItem("money",5000);
+            localStorage.setItem("energy",100);
+        }
+        window.addEventListener("load",start,false);
+    </script>
+</head>
+
+<body onload="setup()" background="start.jpg">
+    <button onclick="judge_Description()" id="b1">開始遊戲!</button>
+    <a href="netway_work_description.html" ><button onclick="read_Description()" id="b2">遊戲說明書!</button></a>
+    <button  onclick="javascript:location.href='網程期末專案.pptx'" id="ppt">PPT說明</button>
+</body>
+
+</html>

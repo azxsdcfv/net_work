@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>網程專題</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body{background-color:  rgb(235, 241, 221);}
+        table {
+            border-collapse: collapse;
+        }
+
+        caption, td {
+            font-weight: bold;
+            font-family: helvetica, arial, sans-serif;
+        }
+
+        caption {
+            font-size: 3em;
+            color: gray;
+        }
+
+        td {
+            font-size: 4em;
+            color: blue;
+            border: 2px solid gray;
+            padding: 5px;
+        }
+
+        div {
+            font-size: 2em;
+            color: red;
+        }
+
+        ol {
+            font-size: 200%;
+            color: firebrick;
+        }
+        li{color: darkblue; font-size: 50%;}
+        img {
+            width: 75px;
+            height: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back();
+            
+        }
+    </script>
+</head>
+
+<body onload="setup()">
+    <div>
+        <img src="back.jfif" onclick="goBack()">
+    </div>
+    <div >
+        <ol style="text-align: center;">遊戲規則:
+            <br><br>
+            <li>
+                此遊戲將有體力限制,體力或金錢其中一項歸零,遊戲立刻中止!
+            </li>
+            <li>
+                花錢購買食物以及住宿可以恢復體力!
+            </li>
+            <li>
+                每去任一個地點則需選擇交通工具，會花費金錢以及消耗體力。
+            </li>
+            <li>
+                需到達景點處才可供購買食物及住宿。
+            </li>
+            <li>
+                在遊戲右上角會顯示您的錢和體力(體力最高為100%,初始金錢為5000元)
+            </li>
+            <li>
+                按下左上角返回鍵，即可開始您的旅途。
+            </li>
+        </ol>
+    </div>
+    
+</body>
+
+</html>
