@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                x = 1;
+                localStorage.setItem("test",x);
+                document.getElementById("miaoliImg").addEventListener("click",change1,false);
+                document.getElementById("taichungImg").addEventListener("click",change2,false);
+                document.getElementById("changhuaImg").addEventListener("click",change3,false);
+                document.getElementById("yunlinImg").addEventListener("click",change4,false);
+                document.getElementById("nantouImg").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="hualien1.jpg" alt="1" width="350px"><ul><li>地址: 花蓮縣新城鄉</li><li>清水斷崖，位於和平和崇德之間，是臺灣東岸的一大奇景，更是臺灣八大景之一。清水斷崖高一千多公尺，以極近90度的角度緊臨太平洋，公路綿延20多公里，蜿蜒曲折，一邊是懸崖峭壁，一邊是茫茫大海，形勢險峻，氣象萬千，令人膽戰心驚，嘆為觀止。而在蘇花公路的崇德隧道旁，有步道通往兩個觀景臺，可將太平洋及清水斷崖的山光水色盡入眼簾。途中更有北方澳、南方澳及烏石鼻等多個風景點讓你選擇。</li><li>蘇花公路和仁至崇德路段著名的旅遊景點。台灣戰後，台灣省政府將其列為台灣八景之一。 約九百萬年前歐亞板塊與菲律賓板塊發生碰撞，而且不斷隆起，加上豐沛的雨水，上覆的岩層受風化侵蝕作用剝失，深處的大理岩和片麻岩於是逐漸抬升露出地表。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="hualien2.jpg" alt="1" width="350px"><ul><li>地址: 新城鄉新城村博愛路與中山路</li><li>新城村是新城鄉開發最早的地區，早年因立霧溪淘金而繁華一時，設有歌廳、電影院、酒家等店鋪。而後因淘金年華逝去，加上台九線蘇花公路改道，讓新城老街順勢沒落，徒增滄桑的歲月痕跡。</li><li>位於新城村博愛路上，有一家六十年歷史的「新城照相館」，屋內有老相機、老布景、老式的鎂光燈、電燈、修底片的工作台；相館旁有一家老字號的「佳興冰果室」，用整顆檸檬連皮下去打的檸檬汁，完全不會苦澀，而且比一般去皮後打成的檸檬汁更香。另於中山路上，近百年歷史的「新豊旅社」，早年因立霧溪淘金而興隆，現仍保留原貌未改建，成為流金歲月的見證。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="hualien3.jpg" alt="1" width="350px"><ul><li>地址: 花蓮縣新城鄉海岸路</li><li>位在花蓮市區東北方，位於花蓮市新城鄉的北埔村，可取道美崙工業區，由花蓮師院（現為「國立東華大學美崙校區」）前指標前行即可到達。此地海灘呈一優美的弧形海灣，海水潔淨湛藍，黑石晶瑩剔透，在此可遠眺青山蒼鬱，公路綿延。</li><li>七星潭富有詩意的名稱，據說是位於花蓮師範學院和花蓮機場一帶，早年有零星湖泊散佈，後來因建設需要而填實。現在一般稱七星潭，是指美崙工業區和花蓮機場以北的地區，有斷層形成的海峽與優美的弧形海灣，具有豐富的自然人文景觀。在七星潭，可以遠眺清水斷崖，夜間還可以欣賞新城和崇德地區的燈火，區內更有許多景點，提供休憩和知性之旅。</li><li>七星潭風景區以自行車道為動脈，從花蓮市南濱公園、經花蓮港、四八高地到七星潭風景區，長達21公里的旅程有不同的風光。花蓮縣政府更興建了石雕園區、賞星廣場、觀日樓、兒童遊樂場等休憩設施，在漁場附近還有海生態的解說牌，也利用防風林區闢建海濱植物園區，動植物生態非常豐富，來一趟知性之旅絕對不虛此行。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="hualien4.jpg" alt="1" width="350px"><ul><li>地址: 花蓮縣秀林鄉</li><li>砂卡礑步道長度為4.4公里，單程步行約二小時。夏季最受歡迎的親水路線當屬砂卡礑步道了，砂卡礑是立霧溪第一條支流砂卡礑溪中下游溪谷的總稱，步道全程都是沿著砂卡礑溪左岸的溪畔行走，由於大部分是沿用早年臺灣電力公司在興建發電廠輸水管與攔砂壩時闢建的施工道路，因此平坦易行。 </li><li>步行砂卡礑步道，除了欣賞沿途美麗的大理石峽谷與清澈迷人的溪潭外，步道前半段大都是開鑿在峭壁下的明隧道，也很有特色。途中共有檢查哨舊址、攔砂壩與三間屋等據點。其中，檢查哨舊址原有五間原住民住家，又稱五間屋，但是目前與三間屋一樣都已成了廢墟。</li><li>前往砂卡礑步道，原本都是從太魯閣峽谷口的收費站旁小徑走下立霧溪，涉水過溪後，從砂卡礑溪與立霧溪合流接上步道山徑。自從中橫公路改建工程在砂卡礑溪溪口建隧道與新橋後，現在前往砂卡礑可直接從谷口橫過砂卡礑溪接步道。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="hualien5.jpg" alt="1" width="350px"><ul><li>地址: 壽豐鄉池南村</li><li>鯉魚潭位於花蓮縣壽豐鄉，湖的面積約104公頃，面積廣大呈南北狹長的橢圓形狀，是東台灣最大的內陸湖泊，潭的四周為環潭公路，全程約5公里，遊客可以來此騎乘自行車，享受健康有氧的愉悅假期。</li><li>自民國91年起，「鯉魚潭」便由花東縱谷國家風景區管理處接管，經過規劃與設計，管理處在此提供了水上腳踏車、滑船、森林步道…等多元的休憩活動，鯉魚潭的湖水自地底湧出，終年不竭，優美的景色，隨著季節變化萬千，夢幻般的仙境，吸引許多遊客前來。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #miaoliImg, #taichungImg, #changhuaImg, #yunlinImg, #nantouImg{
+                width: 300px; height: 200px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 花蓮</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodS.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="hualien1.jpg" alt="miaoliImg" id="miaoliImg"><img src="hualien2.jpg" alt="taichungImg" id ="taichungImg"><img src="hualien3.jpg" alt="changhuaImg" id="changhuaImg"><img src="hualien4.jpg" alt="yunlinImg" id="yunlinImg"><img src="hualien5.jpg" alt="nantouImg" id="nantouImg"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">清水斷崖</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">新城老街</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">七星潭</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">砂卡礑步道</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">鯉魚潭</strong>
+    </body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("miaoliImg").addEventListener("click",change1,false);
+                document.getElementById("taichungImg").addEventListener("click",change2,false);
+                document.getElementById("changhuaImg").addEventListener("click",change3,false);
+                document.getElementById("yunlinImg").addEventListener("click",change4,false);
+                document.getElementById("nantouImg").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="miaoli1.jpg" alt="1" width="350px"><ul><li>地址: 苗栗縣三義鄉龍騰村鄉道苗49線</li><li>龍騰舊稱「魚藤坪」，相傳先民在開墾初時，鯉魚潭有鯉魚精危害地方，鄉民苦不堪言。為了克制鯉魚精作怪，遂在龍騰山區遍植魚藤，同時，又將東面的高山稱為關刀山，用意是藉關刀山斬魚藤，以毒殺鯉魚精，最後魚怪果然不再危害，居民從此安居樂業。至臺灣光復設村後，村民認為「魚藤」不雅而改名為龍騰。</li><li>西元1935年4月21日清晨，臺灣中部大地震，震央即在關刀山附近，三義地區受災慘重，巍峨的山線鐵路龍溪橋完全震毀，震後在原橋西側另建新橋，遺下拱型橋柱，挺立在烈日風霜裡，供後人憑弔。搭火車經三義時，龍騰斷橋遺跡打眼前掠過，令人印象深刻。</li><li>民國88年（西元1999年）9月21日再度遭受九二一大地震的無情摧殘，由北端算起第五橋墩半殘拱口二次被震斷，龍騰斷橋除了深具古樸之美外，也是經歷二次大地震的活見證。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="miaoli2.jpg" alt="1" width="350px"><ul><li>分佈於福建的客家土樓群是世界獨一無二的大型民居，堪稱是中華傳統民居的瑰寶，獲得列入世界文化遺產的行列，並成為公認最具客家文化代表性建築，看到土樓就能夠聯想到客家。土樓造型的「客家圓樓」，除彰顯苗栗在地客家文化特質外，更結合整治北勢溪成果─親水廊道的美麗景觀，為苗栗打造亮麗的門面，呈現在地精緻藝文特色。</li><li>客家圓樓鄰近苗栗高鐵站，是整條親水廊道中最精華之區域，堪稱為「北勢溪之心」，其建築形制仿照大陸原鄉土樓形制建造，客家味十足，另設有環池步道，觀景弧形平台、入口迎賓廣場及親水棧道等豐富的遊憩設施。客家圓樓佔地1,385 平方公尺、總樓板面積3,476 平方公尺，為地下一層、地上三層的結構，空中俯瞰呈現一個環形建築結構。客家圓樓的規劃方向是以本土客家文化為主軸，尤其苗栗是客家音樂戲曲發展重鎮，因此定位為客家戲曲與音樂之主題場館，安排相關展演節目活動，並邀請表演團體進駐，供民眾欣賞研習。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="miaoli3.jpg" alt="1" width="350px"><ul><li>地址: 苗栗縣三義鄉 鯉魚潭水庫</li><li>鯉魚潭水庫因位於三義鄉鯉魚潭村，因此命名為鯉魚潭水庫，是苗栗縣最大的水庫，於民國八十一年竣工。</li><li>鯉魚潭水庫具有四項功能，包括灌溉、防洪、發電與觀光，主要是供給台中縣市與苗栗地區的民生、農業與工業用水。水庫內水資源孕育了豐富的動植物生態，包括大量的魚蝦，還有天然闊葉林與次生林，裡頭還有許多野生動物資源。鯉魚潭水庫風景秀麗，加上附近也有許多景點，因此成為苗栗境內的著名景點之一。</li><li>交通資訊: 開車：由三義交流道下，沿13號省道南行約1公里見西湖村站牌，前行約300公尺至岔路口左轉入鄉道，續行約7公里先抵觀音橋，再向前即至鯉魚潭。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="miaoli4.jpg" alt="1" width="350px"><ul><li>地址: 苗栗縣三義鄉勝興村14鄰勝興89號</li><li>勝興火車站是西部縱貫鐵路的最高點，站內月台有一座紀念碑，標高 402.326公尺，為西部縱貫鐵路中最險峻、自然景觀最特殊的一段。勝興車站整棟建築係以木頭為建材，為一日式虎牙式木造建築，虎牙式設計據說有避邪祈福的作用。</li><li>勝興火車站興建於西元1906年，至今已有百餘年的歷史，站內設施有許多日治時代的設備，例如與泰安之間作為列車通行證的「電器站牌」，現已改為中央控制系統，這套設備也就逐漸成為歷史。</li><li>現在到勝興車站的遊客卻多了一份緬懷，停駛後列車不再來，反而多了新人拍攝婚紗的懷舊場景，越野車手馳騁的新天地，還有三五成群的遊客走進隧道探險的新風貌。擁有多項第一的勝興站，在各方的關愛下已於民國88年（西元1999年）4月16日經苗栗縣政府公告為「縣定古蹟」，至此深富歷史與觀光資源的文物得以保存。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="miaoli5.jpg" alt="1" width="350px"><ul><li>地址: 苗栗縣苗栗市貓裏山公園旁</li><li>苗栗隧道位於苗栗市貓裏山公園旁，全長有460公尺，於西元1903年完工，因北口有兒玉源太郎所提寫「功維敘」，也被稱為功維敘隧道。</li><li>民國87年（西元1998年）山線鐵路雙軌化的工程完工後，火車改行駛新闢建的「苗南隧道」，功維敘隧道因此停用，直到民國92年（西元2003年），苗栗市公所重新整理後。功維敘隧道建築保存良好，特別是隧道北口為紅磚堆砌，造型相當優雅，兒玉源太郎字仍雋刻在上方歷久彌新。隧道內設置有五彩繽紛的燈光，於一段時間內進行變換，閃爍在隧道，同時也照亮過往的歷史軌跡，成為苗栗新的熱門景點。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #miaoliImg, #taichungImg, #changhuaImg, #yunlinImg, #nantouImg{
+                width: 300px; height: auto;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 苗栗</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="miaoli1.jpg" alt="miaoliImg" id="miaoliImg"><img src="miaoli2.jpg" alt="taichungImg" id ="taichungImg"><img src="miaoli3.jpg" alt="changhuaImg" id="changhuaImg"><img src="miaoli4.jpg" alt="yunlinImg" id="yunlinImg"><img src="miaoli5.jpg" alt="nantouImg" id="nantouImg"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">龍騰斷橋</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">客家圓樓</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">鯉魚潭水庫</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">勝興車站</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">功維敘隧道</strong>
+    </body>
+</html>

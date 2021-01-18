@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<!-- Fig. 9.5: RollDice.html -->
+<!-- Random dice image generation using Math.random. -->
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>Play Game</title>
+      <style type = "text/css">
+         li { display: inline; margin-right: 10px; }
+      </style>
+      <script>
+         // variables used to interact with the img elements
+         var die1Image;
+         var die2Image;
+         var die3Image;
+         var die4Image;
+         // register button listener and get the img elements         
+         function start()
+         {
+            var button1 = document.getElementById( "rollButton" );
+            var button2 = document.getElementById("shortcutRoll");
+            button1.addEventListener("click", rollDice, false );
+            die1Image = document.getElementById( "die1" );
+            die2Image = document.getElementById( "die2" );
+            die3Image = document.getElementById( "die3" );
+            die4Image = document.getElementById( "die4" );
+            
+         } // end function start
+
+         // roll the dice
+         function rollDice()
+         {
+            a = [0,0,0,0,0,0,0];
+            die1Image.setAttribute( "src", "die" + 5 + ".png" );
+            die2Image.setAttribute( "src", "die" + 4 + ".png" );
+            die3Image.setAttribute( "src", "die" + 3 + ".png" );
+            die4Image.setAttribute( "src", "die" + 6 + ".png" );
+            document.getElementById("valueStyle").innerHTML = "Total is <strong style='color: FIREBRICK;'>"+ 18 +"</strong>";
+            localStorage.setItem("game",18);
+         } // end function rollDice
+         
+         // set src and alt attributes for a die
+         // function setImage( dieImg )
+         // {
+         //    var dieValue = Math.floor( 1 + Math.random() * 6 );
+         //    dieImg.setAttribute( "src", "die" + dieValue + ".png" );
+         //    dieImg.setAttribute( "alt", "die image with " + dieValue + " spot(s)" );
+         //    return dieValue;
+         // } // end function setImage
+
+         window.addEventListener( "load", start, false );
+      </script>
+   </head>
+
+   <body style="text-align: center;">
+      <form action = "#">
+         <input id = "rollButton" type = "button" value = "Roll Dice">
+      </form>
+      <ol>
+         <li><img id = "die1" src = "blank.png" alt = "blank image"></li>
+         <li><img id = "die2" src = "blank.png" alt = "blank image"></li>
+         <li><img id = "die3" src = "blank.png" alt = "blank image"></li>
+         <li><img id = "die4" src = "blank.png" alt = "blank image"></li>
+      </ol>
+      <div id="valueStyle" style="font-size: 200%;"></div>
+      <p></p>
+   </body>
+</html>

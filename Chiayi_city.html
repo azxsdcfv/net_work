@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("park").addEventListener("click",change1,false);
+                document.getElementById("Lantan").addEventListener("click",change2,false);
+                document.getElementById("forest").addEventListener("click",change3,false);
+                document.getElementById("Historical").addEventListener("click",change4,false);
+                document.getElementById("culture").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="park.jfif" alt="1" width="350px"><ul><li>地址: 王田里 600嘉義市東區</li><li>公園內有忠烈祠、射日塔、福康安紀功碑、丙午震災紀念碑、十二門古砲、陳澄波畫架、牆之道、一江山紀念碑、孔廟以及國寶級的阿里山森林鐵道21號蒸汽火車頭等史蹟，為民眾休閒好去處。此外，位在公園東北隅的林業、農業兩試驗分所，場中遍植多種熱帶植物，濃蔭逐暑，綠葉搖風，亦值得順道一遊。</li><li>嘉義公園位在嘉義市東郊，始建之初，依山仔頂山勢開闢園地，後來又拓寬東西邊的空地，築橋修路，計公園面積約268,000多平方公尺，園內古木參天，涼亭水榭，假山魚池，曲徑通幽，因為利用自然山水，風景雅緻，可謂逍遙勝地。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Lantan.jfif" alt="1" width="350px"><ul><li>地址:蘭潭風景特定區 600嘉義市東區小雅路。</li><li>蘭潭位於嘉義市東北郊山仔頂附近，相傳西元1620年荷據時代荷蘭人在八掌溪的支流鹿寮溪築壩，到了日治時代，日本人又築壩把蘭潭作為自來水廠的儲水池，直到現在蘭潭依然是嘉義自來水廠的蓄水庫，提供嘉義市的飲水灌溉。蘭潭潭水清澈見底，四面岡陵起伏，山光水色，潭水若遇月夜朦朧，如詩如畫，故「蘭潭泛月」列為嘉義八景之一。沿岸的環湖公路，環湖巡禮可見觀景樓，立於樓頂蘭潭一覽無遺。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="forest.jfif" alt="1" width="350px"><ul><li>地址: 阿里山森林鐵路車庫園區 600嘉義市東區林森西路2號</li><li>阿里山森林鐵路為世界著名登山鐵路之一，本園區是阿里山小火車的大本營，遊客們不但可以看到數台退役蒸汽火車、柴油機車、動力客車、客貨車廂以及方便火車頭變換方向的圓形轉車台等，還可以近距離觸摸，想要一睹森林小火車的丰采，車庫園區收藏各式機車頭與廠房設備，必定讓您如入寶山，滿載而歸，是火車迷獵取鏡頭的好地方。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="Historical.jfif" alt="1" width="350px"><ul><li>地址:東川里 600嘉義市東區 </li><li>該兩棟建築物屬日本「書院造」的建築形式，使用天花板、紙橫拉門、外廊道等建築要素。而屋頂屬「入母屋式」形式，類似中國傳統的歇山頂，其屋簷、屋脊、破風、垂脊、正脊均使用日式之建築元素。屋身外壁之上端有船形肘木（斗拱），下半部採「真壁」形式。臺基為低矮干闌式作法，而門窗方面，門多採橫拉門，只有少數屬推拉門；窗則有玻璃橫拉窗固定格柵窗、固定格柵加橫拉玻璃窗，以及紙橫拉窗等四種。齋館、社務所、手水舍，祭器庫等，是日本留下的居住文化代表，且祭器庫有混凝土模倣木作建築的外牆，較為特殊。</li><li>民國87年（西元1998年）10月，該兩棟建物經嘉義市政府核定為市定古蹟，並定名為「嘉義市史蹟資料館」。民國90年（西元2001年）9月15日史蹟資料館開館啟用，館內展示有關嘉義的人與嘉義市的事，以過去與現在的時光交錯，呈現各自的風華，藉以激發民眾愛鄉愛家的情懷。史蹟資料館是了解嘉義歷史的最佳處所。認識嘉義，就從參觀史蹟資料館開始</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="culture.jfif" alt="1" width="350px"><ul><li>地址: 嘉義市政府文化局 600嘉義市東區忠孝路275號</li><li>文化中心現有博物館、圖書館、音樂廳等三棟建物，加上美麗精緻的庭園、整個文化園區佔地五千多坪。博物館地下室為嘉義市交趾陶館，一至四樓設有各類展覽室。圖書館規劃有閱覽室、視聽室、書庫。音樂廳配置專用座椅，可容1,113席，舞臺布幕以國畫大師林玉山作品「蓮池」為圖案，使用綢緞以手工編織。</li><li>音樂廳北側水池，在日治時代配合阿里山鐵路運輸，做為浸貯木材之用，又名「杉池」，當時池旁植樹，濃蔭蔽天，垂釣林下，悠然自得，「檜沼垂綸」曾為諸羅八景之一。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #park, #Lantan, #forest, #Historical, #culture{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 嘉義市</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodS.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="park.jfif" alt="park" id="park"><img src="Lantan.jfif" alt="Lantan" id ="Lantan"><img src="forest.jfif" alt="forest" id="forest"><img src="Historical.jfif" alt="Historical" id="Historical"><img src="culture.jfif" alt="culture" id="culture"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">嘉義公園</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">蘭潭公園</strong>
+        <strong style="position: absolute; top: 475px; left: 670px; font-size: 120%;">阿里山森林鐵路車庫園區</strong>
+        <strong style="position: absolute; top: 475px; left: 1000px; font-size: 120%;">嘉義市史蹟資料館</strong>
+        <strong style="position: absolute; top: 475px; left: 1300px; font-size: 120%;">嘉義市立文化中心</strong>
+    </body>
+</html>

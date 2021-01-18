@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("citygod").addEventListener("click",change1,false);
+                document.getElementById("lake").addEventListener("click",change2,false);
+                document.getElementById("glass").addEventListener("click",change3,false);
+                document.getElementById("image").addEventListener("click",change4,false);
+                document.getElementById("eighten").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="citygod.jfif" alt="1" width="350px"><ul><li>地址: 300新竹市北區中央路3巷68號</li><li>城隍為專門掌管陰間與陽間賞罰善惡的神明，因此城隍廟的佈置猶如古代的衙門。創建於西元1748年，其廟宇規模在當時是全臺之最，廟埕的市集小吃攤，成為新竹特色之一。</li><li>園區內林種豐富，如青楓、紅榨楓、山毛櫸等變色葉木，每當深秋，綠葉轉黃、轉紅，別富詩意。 遊客可儘情欣賞這些樹齡在五百年至三千年左右，饒富特色，像神話般存活著的紅檜巨木。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="lake.jfif" alt="1" width="350px"><ul><li>地址:鳳凰橋 300新竹市東區明湖路775巷51-1號號。</li><li>「青草湖」，距新竹市區4公里，湖水水源來自客雅溪，建於民國45年（西元1956年），具有觀光及灌溉多種功能。青草湖的山光水色，是吸引觀光客的主要賣點，奈何因水庫淤積、颱風破壞、上游濫建等原因，導致遊客止步；近年市府再行整治，再度成為民眾假日聚集的好去處。環湖公路經過水壩後左側有一上坡岔路，是通往古奇峰與科學園區的捷徑。湖的一旁是靈隱寺，寺內環境清幽，還保存有許多日治時代留下的石燈石柱。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="glass.jfif" alt="1" width="350px"><ul><li>地址: 麗池 300新竹市東區</li><li>玻工館的成立，旨在結合文化與觀光資源，協助新竹玻璃產業升級，讓民眾及業者參與並瞭解新竹玻璃產業的開發與應用。館內除了陳設玻璃作品外，還積極推動工房教學，讓民眾在視覺的欣賞外，還能進一步觸摸與創作，以貼近玻璃創作所帶來的另一種震撼。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="image.jfif" alt="1" width="350px"><ul><li>地址:中正里 300新竹市東區 </li><li>有樂館建於西元1933年，為全臺第一座具有冷氣設備的戲院，座位約五百人。其建築形式融合古羅馬與阿拉伯建築風味，是日本殖民政府展示國力的豪華型公共建築之一。西元1944年於二次大戰中遭到轟炸，二樓毀損了約三分之一。</li><li>民國85年（西元1996年）文建會「全國文藝季」，新竹市立文化中心在荒廢閒置的國民戲院廣場，舉辦「風城情波」系列活動，成功召喚了市民的記憶與情感。在多位地方賢達及電影學者奔走規劃下，委託國家電影資料館提出「影像博物館」的藍圖。民國87年（西元1998年）由文建會撥款，公開競圖，甄選出林志成建築師負責「歷史建築再利用」整建計劃，於民國88年（西元1999年）3月8日開工， 民國89年（西元2000年）5月21日落成啟用。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="eighten.jfif" alt="1" width="350px"><ul><li>地址: 300新竹市東區博愛街5巷61號</li><li>十八尖山自新竹縣北郊迤邐而南，是日治時代所開闢的「森林公園」，略呈「新月形」，蜿蜒約7、8里，恰好環抱新竹市東、南郊。這十八尖山的得名，據云確有18個山頭。最高處是131.79公尺，最低處為50公尺，平均坡度為40%。</li><li>為了替角板山增添藝文氣息，與世界藝術大師接軌，桃園市政府於民國92年（西元2003年）邀請吳炫三等12位國際大師，在園區內創作公共藝術作品，成為第一處世界級「雕塑公園」與公共藝術教育園地，由於雕塑作品十分具有創意，並融入當地景觀，帶動角板山的觀光熱度。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #citygod, #lake, #glass, #image, #eighten{
+                width: 300px; height: auto;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 新竹</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="citygod.jfif" alt="citygod" id="citygod"><img src="lake.jfif" alt="lake" id ="lake"><img src="glass.jfif" alt="glass" id="glass"><img src="image.jfif" alt="image" id="image"><img src="eighten.jfif" alt="eighten" id="eighten"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">城隍廟</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">青草湖</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">玻璃博物館</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">影像博物館</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">十八尖山</strong>
+    </body>
+</html>

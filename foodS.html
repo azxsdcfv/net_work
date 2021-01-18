@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $('#S_Rice').hover( function(){
+                    $('#middleImg').attr({src: 'S_Rice.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'S_Rice.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#S_DanDan').hover( function(){
+                    $('#middleImg').attr({src: 'S_DanDan.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'S_Rice.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#S_duckMeat').hover( function(){
+                    $('#middleImg').attr({src: 'S_duckMeat.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'S_Rice.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#S_meatBun').hover( function(){
+                    $('#middleImg').attr({src: 'S_meatBun.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'S_Rice.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#S_noodle').hover( function(){
+                    $('#middleImg').attr({src: 'S_noodle.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'S_Rice.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+            });
+            function start(){
+                document.getElementById("S_Rice").addEventListener("click",eat1,false);
+                document.getElementById("S_DanDan").addEventListener("click",eat2,false);
+                document.getElementById("S_duckMeat").addEventListener("click",eat3,false);
+                document.getElementById("S_meatBun").addEventListener("click",eat4,false);
+                document.getElementById("S_noodle").addEventListener("click",eat5,false);
+                
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+            }
+            function eat1(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 80;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat2(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 150;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat3(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 80;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat4(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 40;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat5(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 50;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: absolute; left: 530px; top: 60px;
+            }
+            #city {
+                position: absolute; top: 450px;
+                float: left;
+            }
+            #S_Rice, #S_DanDan, #S_duckMeat, #S_meatBun, #S_noodle{
+                width: 300px; height: 230px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 45px;}
+            #energy {position: absolute; left: 1000px; top: 43px;}
+        </style>
+    </head>
+    <body>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        <div style="text-align: center;"><img src="S_Rice.jpg" alt="S_Rice" id="middleImg"></div>
+        <div id="city"><img src="S_Rice.jpg" alt="S_Rice" id="S_Rice"><img src="S_DanDan.jpg" alt="S_DanDan" id ="S_DanDan"><img src="S_duckMeat.jpg" alt="S_duckMeat" id="S_duckMeat"><img src="S_meatBun.jpg" alt="S_meatBun" id="S_meatBun"><img src="S_noodle.jpg" alt="S_noodle" id="S_noodle"></div>
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 425px; left: 130px; font-size: 120%;">雞肉飯/80</strong>
+        <strong style="position: absolute; top: 425px; left: 450px; font-size: 120%;">丹丹/150</strong>
+        <strong style="position: absolute; top: 425px; left: 720px; font-size: 120%;">羹/80</strong>
+        <strong style="position: absolute; top: 425px; left: 1000px; font-size: 120%;">包子/40</strong>
+        <strong style="position: absolute; top: 425px; left: 1300px; font-size: 120%;">麵線糊/50</strong>
+    </body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Ershawan").addEventListener("click",change1,false);
+                document.getElementById("Dawulun").addEventListener("click",change2,false);
+                document.getElementById("Peng").addEventListener("click",change3,false);
+                document.getElementById("ball").addEventListener("click",change4,false);
+                document.getElementById("White").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Ershawan.jfif" alt="1" width="350px"><ul><li>地址: 海門天險 202基隆市中正區壽山路</li><li>於西元1840年清英鴉片戰爭時，為防止英軍入侵而建，西元1884年清法戰爭毀損後劉銘傳（臺灣首任巡撫）又重建，因位處於二沙灣一帶的山路上，因此有「二沙灣砲臺」的別稱。</li><li>海門天險因地制宜，東、北二個砲臺分守外海及內海口門，建於較高的臨海山頭，低處背海面則為營區。砲臺區內可看到大砲、彈藥庫等；而營盤區則遺有數段牆垣和刻有「海門天險」四個大字的營門。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Dawulun.jfif" alt="1" width="350px"><ul><li>地址:大武崙砲台 204基隆市安樂區。</li><li>原名五義埤的情人湖位於大武崙山上，係多條山澗匯集而成，為基隆僅有的高地湖泊，附近林木茂密，湖區規劃有環山和環湖步道，是基隆近郊散步、賞景、野餐的勝地</li><li>由情人湖往大武崙山上開車約10分鐘，可抵大武崙砲臺，為基隆西側的重要防禦堡壘，在西元1840年的清英鴉片戰爭及西元1884年的清法戰爭時，清政府均曾派員駐防。現今所見的大武崙砲臺，正確的創建年代不詳。但據其構造及設計特色來看，應為日治時期所改建之結果。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="Peng.jfif" alt="1" width="350px"><ul><li>地址: 彭佳嶼</li><li>西元1906年興建的彭佳嶼燈塔，位於基隆外海彭佳嶼島上，為一圓形磚砌塔，外表為白色，透鏡為一等旋轉透鏡，為臺灣地區使用最大旋轉透鏡燈塔彭佳嶼為一座火山島，彭佳嶼燈塔建在火山口，相當特殊。由於彭佳嶼燈塔目標醒目，二戰期間曾遭盟軍飛機轟炸達四次之多。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="ball.jfif" alt="1" width="350px"><ul><li>地址:球子山燈塔 203基隆市中山區中山三路103巷203號122-134號 旁軍營山頂 </li><li>民國45年（西元1956年）設立的球子山燈塔，位於基隆港西岸碼頭的球子山頂，塔身原為白色四方形混凝土燈塔，現已暫停發光。球子山燈塔是第一座由國人自行設計、施工的燈塔，當初興建是因希望與位在西岸港口的基隆燈塔排成一直線，以引導船隻安全入港。</li><li>民國80年（西元1991年）後，因基隆港附近的新瀨險礁已爆破清除，使得球子山燈塔的功能被附近燈塔及燈杆取代，因而暫停發光並將塔身漆為綠色。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="White.jfif" alt="1" width="350px"><ul><li>地址: 白米甕砲臺 203基隆市中山區光華路37號</li><li>白米甕砲臺位在基隆港口西岸高地上，與東岸的和平島互為犄角，共扼基隆港門，形勢非常險要，砲臺可能早在300多年前的西班牙及後來的荷蘭佔據時代就已設置，因此有「荷蘭城砲臺」之稱，清法戰爭時，法軍曾佔領過，今日之形貌為日治時代所改建而成的」。</li><li>砲臺區呈長形平面，一字排開面對海上，有砲盤區、指揮所和觀測臺三部份，四個巨型砲座，是臺灣現存砲臺中僅有的形制。惟目前已無大砲在此，只見四座砲座和子牆的遺跡。左側的指揮所已改建，右側的觀測臺則可由涼亭旁的石階拾級而上，視野極佳，可充分欣賞海天一色的景致。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<=0||energy<=0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Ershawan, #Dawulun, #Peng, #ball, #White{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 基隆</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodN.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Ershawan.jfif" alt="Ershawan" id="Ershawan"><img src="Dawulun.jfif" alt="Dawulun" id ="Dawulun"><img src="Peng.jfif" alt="Peng" id="Peng"><img src="ball.jfif" alt="ball" id="ball"><img src="White.jfif" alt="White" id="White"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">二砂灣砲台</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">大武崙砲台</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">彭佳嶼</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">球子山燈塔</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">白米甕砲臺</strong>
+    </body>
+</html>

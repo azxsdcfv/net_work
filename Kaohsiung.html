@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function start(){
+                document.getElementById("Qijin").addEventListener("click",change1,false);
+                document.getElementById("Xiziwan").addEventListener("click",change2,false);
+                document.getElementById("Lotus").addEventListener("click",change3,false);
+                document.getElementById("Tianliao").addEventListener("click",change4,false);
+                document.getElementById("British").addEventListener("click",change5,false);
+                
+                document.getElementById("game").addEventListener("click",game,false);
+                document.getElementById("city").addEventListener("click",show,false);
+                document.getElementById("hotel").addEventListener("click",hotel,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function hotel(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                while(true){
+                    choose = window.prompt("確定要選擇住宿嗎?花費1000元 可回復70%體力值\n(1:確定,2:先不要)");
+                    if(choose == '1'){
+                        money = money - 1000;
+                        energy = energy + 70;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+                location.reload();
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            
+            function change1(){
+                document.getElementById("middle").innerHTML = '<img src="Qijin.jfif" alt="1" width="350px"><ul><li>地址: 振興里 高雄市旗津區</li><li>旗津舊名旗後，為一個狹長形的島，往旗津有兩種選擇，一是搭乘渡船，一是驅車穿過過港隧道。旗津雖小，卻有多樣吸引人的去處，在廟前路的天后宮，有三百年歷史；身著唐裝的三輪車伕，是島上另一個觀光焦點，旗津老街上，綿延清一色海產店，價廉味美的新鮮海產，露天下大快朵頤，十分暢快。</li><li>旗後燈塔底層為文藝復興後期的巴洛克建築，主體後方則是八角形磚塔。塔區的視野景觀優良，可俯瞰整個高雄港灣美景。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change2(){
+                document.getElementById("middle").innerHTML = '<img src="Xiziwan.jfif" alt="1" width="350px"><ul><li>地址:804高雄市鼓山區蓮海路70。</li><li>西子灣位於高雄市西側，壽山西南端山麓下，北瀕萬壽山，南臨旗津半島，為一黃澄碧藍的海水浴場，是一處以夕陽美景及天然礁石聞名的灣澳。距市中心車程約20分鐘，依山臨海，風景宜人，每當夜幕低垂，將大海點綴的瑰麗可人，漁船燈火閃爍其間；西子灣的夕陽是高雄八景之一，海天一色的美景，美不勝收，黃昏時分，常可見一對對情侶在此互道情愫，更有詩情畫意的情境。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change3(){
+                document.getElementById("middle").innerHTML = '<img src="Lotus.jfif" alt="1" width="350px"><ul><li>地址: 蓮池潭 813高雄市左營區</li><li>舊稱蓮花潭，位於高雄市左營區東側，南鄰龜山、北接半屏山，潭面面積約42公頃，源於高屏溪。蓮池潭周邊潭水因遍植荷花，在清領時期就名列鳳山八景，稱「泮水荷香」，現因湖畔半屏山特殊造型與龍虎塔遠近倒映水中，而以「蓮潭夕照」聞名。入夜後的蓮池潭，水霧濛濛，景色若隱若現，予人難以言喻的神秘感。潭上亭台樓閣林立，潭畔遍植垂柳，景緻秀麗。由南而北風景點分別有舊城、龍虎塔、五里亭、春秋閣、啟明堂、孔廟等，吸引各地遊客前往，假日更是絡繹不絕。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change4(){
+                document.getElementById("middle").innerHTML = '<img src="Tianliao.jfif" alt="1" width="350px"><ul><li>地址:月世界 823高雄市田寮區 </li><li>這種奇特的景觀，地理學上稱做「惡地」的地形，乃是因為地殼「回春作用」，長年累月經雨水與河水強烈侵蝕而成的惡劣地形。月世界地居二仁溪小支流山谷內，山谷中建了一座攔沙壩，儲積雨季之水，稱「月景農塘」。但在短短十多年，農塘已被雨水強烈的沖刷，只剩下一片滿目蒼涼的景觀了。</li><li>月世界附近有一座「攬月樓」，可供遊客休息賞景，採中國式建築，外觀非常引人注目。鄰近景點有日月禪寺、峰月宮、泥火泉等，奇特的風景，還有露營區，可供外來遊客到此賞玩</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function change5(){
+                document.getElementById("middle").innerHTML = '<img src="British.jfif" alt="1" width="350px"><ul><li>地址: 桃源里 804高雄市鼓山區</li><li>這座英國式的建築，設計者為英國人，使用尺寸皆為英碼及英呎。四周的外牆有連續的半圓拱，轉角處的栱較小而牆柱較大，是力學上的強固作用。建築物內設壁爐，並有地下室。整體外觀為連續的半圓栱，使得造型非常富有節奏感。領事館的紅磚從廈門運來，工匠聘自大陸，迴廊的圓栱在夕陽下被映照得更顯古意盎然。竹節狀的落水管是清末洋樓的特色，轉角的磚柱為雙柱並立，構造更為穩固。</li><li>民國75年（西元1986年）始經考證研究修復，現在內部闢為高雄史蹟文物館，陳列有關打狗開拓及近代史之文獻、照片及模型。遊客至此，除可參觀館內豐富收藏外，館外可西眺大海的點點船影，東望市區及港口，南側有曲折保持完好的古道，處處展現迷人的風采。</li></ul>';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                if(energy>100){
+                    localStorage.setItem("energy",100);
+                    energy = 100;
+                }
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+            }
+            function openGame(){
+                window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: relative;
+            }
+            #middle {
+                position: absolute;
+                left: 360px; top: 50px;
+                overflow: scroll;
+                background-color: gainsboro;
+                height: 400px; width: 750px; margin: 25px;
+            }
+            #city {
+                position: absolute;
+                top: 500px; left: 15px;
+                float: left;
+            }
+            #Qijin, #Xiziwan, #Lotus, #Tianliao, #British{
+                width: 300px; height: 250px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 35px;}
+            #energy {position: absolute; left: 1000px; top: 32px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 高雄</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="food" value="美食" onclick="javascript:location.href='foodS.html'">
+        <input type="button" name="" id="hotel" value="住宿">
+        <input type="button" name="" id="game" value="小遊戲">
+
+        <div style="text-align: center;" id="middle">點選景點 選擇想要去的地方</div>
+
+        <div id="city"><img src="Qijin.jfif" alt="Qijin" id="Qijin"><img src="Xiziwan.jfif" alt="Xiziwan" id ="Xiziwan"><img src="Lotus.jfif" alt="Lotus" id="Lotus"><img src="Tianliao.jfif" alt="Tianliao" id="Tianliao"><img src="British.jfif" alt="British" id="British"></div>
+
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 475px; left: 120px; font-size: 120%;">旗津</strong>
+        <strong style="position: absolute; top: 475px; left: 423px; font-size: 120%;">西子灣</strong>
+        <strong style="position: absolute; top: 475px; left: 716px; font-size: 120%;">蓮花潭</strong>
+        <strong style="position: absolute; top: 475px; left: 1032px; font-size: 120%;">田寮月世界</strong>
+        <strong style="position: absolute; top: 475px; left: 1320px; font-size: 120%;">打狗英國領事館</strong>
+    </body>
+</html>

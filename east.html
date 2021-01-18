@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $('#taichungImg').hover( function(){
+                    $('#middleImg').attr({src: 'hualien.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'east.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#yunlinImg').hover( function(){
+                    $('#middleImg').attr({src: 'taitung.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'east.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+            });
+            function start(){
+                document.getElementById("game").addEventListener("click",game,false);
+
+                document.getElementById("city").addEventListener("click",show,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+            }
+            function show(){
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                while(true){
+                    choose = window.prompt("請問您要搭乘何種交通工具前往?\n1.火車(cost 200元 消耗體力20) \n2.客運(cost 500元 消耗體力10)");
+                    if(choose == '1'){
+                        money = money - 200;
+                        energy = energy - 20;
+                        break;
+                    }
+                    else if(choose == '2'){
+                        money = money - 500;
+                        energy = energy - 10;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新選擇。");
+                    }
+                }
+                localStorage.setItem("money",money);
+                localStorage.setItem("energy",energy);
+            }
+            function game(){               
+                while(true){
+                    x = window.prompt("擲四個骰子，總點數和大於12為大、小於12為小\n請問您要押大還是押小呢?(輸入1:大、輸入2:小)");
+                    m = window.prompt("您要押多少賭注呢?(贏則翻倍、輸則沒收，至少500!)");
+                    m = parseInt(m);
+                    money = parseInt(money);
+                    if(m<500){
+                        window.alert("賭注至少500請重新輸入");
+                        continue;
+                    }
+                    window.open ("game.html", "newwindow", "height=300, width=420,top=170, left=520, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+                    if(x == '1'){
+                        window.alert("Congratulation!\nYou won the money!");
+                        money = money+m;
+                        break;
+                    }
+                    else if(x == '2'){
+                        window.alert("Sorry!\nYou lose the money!");
+                        money = money-m;
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤!請重新輸入!");
+                    }
+                }
+                localStorage.setItem("money",money);
+                location.reload();
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: absolute; left: 530px; top: 60px;
+            }
+            #city {
+                position: absolute; top: 350px;
+            }
+            #taichungImg, #yunlinImg{
+                width: 300px; height: auto;
+            }
+            #yunlinImg{
+                position: absolute;
+                left: 900px;
+            }
+            #taichungImg{
+                position: absolute;
+                left: 210px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 45px;}
+            #energy {position: absolute; left: 1000px; top: 43px;}
+        </style>
+    </head>
+    <body>
+        <marquee behavior="scroll" direction="left" >歡迎蒞臨 台灣東部</marquee>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        
+        <input type="button" name="" id="game" value="小遊戲" >
+        <div style="text-align: center;"><img src="east.jpg" alt="middleImg" id="middleImg"></div>
+        <div id="city"><img src="hualien.jpg" alt="taichungImg" id ="taichungImg" onclick="javascript:location.href='hualien.html'"><img src="taitung.jpg" alt="yunlinImg" id="yunlinImg" onclick="javascript:location.href='taitung.html'"></div>
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 500px; left: 200px; font-size: 120%;">花蓮</strong>
+        <strong style="position: absolute; top: 490px; left: 1200px; font-size: 120%;">台東</strong>
+    </body>
+</html>

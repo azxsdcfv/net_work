@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $('#N_hotpot').hover( function(){
+                    $('#middleImg').attr({src: 'N_hotpot.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N_hotpot.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#N_noodle').hover( function(){
+                    $('#middleImg').attr({src: 'N_noodle.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N_hotpot.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#N_Provence').hover( function(){
+                    $('#middleImg').attr({src: 'N_Provence.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N_hotpot.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#N_steak').hover( function(){
+                    $('#middleImg').attr({src: 'N_steak.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N_hotpot.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+                $('#N_susi').hover( function(){
+                    $('#middleImg').attr({src: 'N_susi.jpg'});//滑鼠移入後要出現的照片位置網址
+                },
+                function(){
+                    $('#middleImg').attr({src:'N_hotpot.jpg'});
+                });//滑鼠移出後要出現的照片位置網址
+            });
+            function start(){
+                
+                document.getElementById("N_hotpot").addEventListener("click",eat1,false);
+                document.getElementById("N_noodle").addEventListener("click",eat2,false);
+                document.getElementById("N_Provence").addEventListener("click",eat3,false);
+                document.getElementById("N_steak").addEventListener("click",eat4,false);
+                document.getElementById("N_susi").addEventListener("click",eat5,false);
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+                money = localStorage.getItem("money");
+                energy = localStorage.getItem("energy");
+                money = parseInt(money);
+                energy = parseInt(energy);
+                document.getElementById("money").innerHTML = '<img src="money.jfif" alt="moneyImg" width="10px"> Remain Money: '+ money + ' dollars';
+                document.getElementById("energy").innerHTML = '<img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy: '+ energy + ' %';
+                if(money<0||energy<0){
+                    location.href="end.html";
+                }
+            }
+            function eat1(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 200;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat2(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 100;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat3(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 500;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat4(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 600;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            function eat5(){
+                while(true){
+                    x = window.prompt("確定要吃嗎? 可回復5%體力值!\n(1:確定,2:先不要)");
+                    if(x == '1'){
+                        m = localStorage.getItem("money");
+                        e = localStorage.getItem("energy");
+                        e = parseInt(e);
+                        m = parseInt(m);
+                        e = e+5;
+                        m = m - 400;
+                        localStorage.setItem("money",m);
+                        localStorage.setItem("energy",e);
+                        break;
+                    }
+                    else if(x == '2'){
+                        break;
+                    }
+                    else{
+                        window.alert("輸入錯誤，請重新輸入!");
+                    }
+                }
+                location.reload();
+            }
+            window.addEventListener("load",start,false);
+        </script>
+        <style>
+            marquee {
+                color: darkslateblue; font-weight: 1000; font-size: 130%;;
+            }
+            #middleImg {width: 27%; height: auto;
+                position: absolute; left: 530px; top: 60px;
+            }
+            #city {
+                position: absolute; top: 450px;
+                float: left;
+            }
+            #N_hotpot, #N_noodle, #N_Provence, #N_steak, #N_susi{
+                width: 300px; height: 230px;
+            }
+            #food {
+                position: absolute; left: 80px; top: 160px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #hotel {
+                position: absolute; left: 80px; top: 260px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #game {
+                position: absolute; left: 1250px; top: 220px;
+                width: 150px; height: 80px; font-size: 200%;
+                background-color:khaki;
+                border-radius: 10px;
+                color:  darkslateblue;
+            }
+            #back{ position: absolute; left: 85px; top: 110px;
+                color: darkblue; font-weight: 1000;    
+                }
+            #back:hover { background-color: khaki; }
+            #backImg {position :absolute; left: 80px; top: 60px;
+                width: 60px;}
+            #money {position: absolute; left: 1250px; top: 45px;}
+            #energy {position: absolute; left: 1000px; top: 43px;}
+        </style>
+    </head>
+    <body>
+        <div onclick="history.back()"><img src="back.jfif" alt="back" id="backImg" > <span id="back">上一頁</span></div>
+        <div style="text-align: center;"><img src="N_hotpot.jpg" alt="middleImg" id="middleImg"></div>
+        <div id="city"><img src="N_hotpot.jpg" alt="N_hotpot" id="N_hotpot"><img src="N_noodle.jpg" alt="N_noodle" id ="N_noodle"><img src="N_Provence.jpg" alt="N_Provence" id="N_Provence"><img src="N_steak.jpg" alt="N_steak" id="N_steak"><img src="N_susi.jpg" alt="N_susi" id="N_susi"></div>
+        <div id="health"></div>
+        <div id="money"><img src="money.jfif" alt="moneyImg" width="10px"> Remain Money:</div>
+        <div id="energy"><img src="energy.jpg" alt="energyImg" width="17px"> Remain Energy:</div>
+        <strong style="position: absolute; top: 425px; left: 130px; font-size: 120%;">火鍋/200</strong>
+        <strong style="position: absolute; top: 425px; left: 450px; font-size: 120%;">麵線/100</strong>
+        <strong style="position: absolute; top: 425px; left: 720px; font-size: 120%;">普羅旺斯/500</strong>
+        <strong style="position: absolute; top: 425px; left: 1000px; font-size: 120%;">牛排/600</strong>
+        <strong style="position: absolute; top: 425px; left: 1300px; font-size: 120%;">壽司/400</strong>
+    </body>
+</html>
